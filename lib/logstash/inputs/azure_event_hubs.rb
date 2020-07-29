@@ -409,6 +409,7 @@ class LogStash::Inputs::AzureEventHubs < LogStash::Inputs::Base
           end
           options = EventProcessorOptions.new
           options.setMaxBatchSize(max_batch_size)
+          options.setPrefetchCount(prefetch_count)
           options.setExceptionNotification(LogStash::Inputs::Azure::ErrorNotificationHandler.new)
           case @initial_position
           when 'beginning'
