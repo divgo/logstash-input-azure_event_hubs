@@ -21,7 +21,7 @@ steps:
   displayName: 'bundle install'
 
 - script: |
-    ls -al
+    ls -laR vendor
 
 # - script: bundle exec rake
 #   displayName: 'bundle exec rake'
