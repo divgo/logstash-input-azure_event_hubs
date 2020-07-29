@@ -24,5 +24,11 @@ steps:
 - script: |
     ls -laR
 
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: './*.gem'
+    ArtifactName: 'drop'
+    
 # - script: bundle exec rake
 #   displayName: 'bundle exec rake'
