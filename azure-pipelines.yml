@@ -15,7 +15,7 @@ steps:
     versionSpec: '>= 2.5'
 
 - script: |
-    gem install bundler logstash-devutils logstash-core-plugin-api logstash-core
+    gem install bundler
     ./gradlew vendor
     bundle install --retry=3 --jobs=4
   displayName: 'bundle install'
