@@ -16,10 +16,20 @@ steps:
 
 - script: |
     gem install bundler
-    ./gradlew vendor --scan --stacktrace --info
-    bundle install --retry=3 --jobs=4
-    gem build
   displayName: 'bundle install'
+
+- task: Gradle@2
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'vendor'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
+    options:  --scan --stacktrace --info
 
 # - script: bundle exec rake
 #   displayName: 'bundle exec rake'
+- script: |
+    bundle install --retry=3 --jobs=4
+    gem build
+  displayName: 'bundle install'
