@@ -33,3 +33,8 @@ steps:
     bundle install --retry=3 --jobs=4
     gem build
   displayName: 'bundle install'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: './logstash-input-azure_event_hubs-1.2.2.gem'
+    ArtifactName: 'drop'
