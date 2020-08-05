@@ -16,8 +16,8 @@ steps:
 
 - script: |
     gem install bundler
-    bundle install --retry=3 --jobs=4
     ./gradlew vendor --debug
+    bundle install --retry=3 --jobs=4
     gem build
   displayName: 'bundle install'
 
