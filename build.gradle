@@ -52,14 +52,17 @@ task vendor {
             File newJarFile = file("${vendorPathPrefix}" + File.separator + "${groupPath}" + File.separator + "${dep.name}"+ File.separator + "${dep.version}" + File.separator + "${dep.name}-${dep.version}.jar")
             newJarFile.mkdirs()
 
-            // File f = configurations.runtime.filter { it.absolutePath.contains("${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}") }.singleFile
-            // Files.copy(f.toPath(), newJarFile.toPath(), REPLACE_EXISTING)
+            String jarPath = "${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}"
+            logging.info(jarPath)
 
-            findJarsByGroup(configurations.runtime, dep.group).each { jar ->
-                logging.info(jar.toPath())
-                logging.info(newJarFile.toPath())
-                Files.copy(jar.toPath(), newJarFile.toPath(), REPLACE_EXISTING)
-            }
+            File f = configurations.runtime.filter { it.absolutePath.contains(jarPath) }.singleFile
+            Files.copy(f.toPath(), newJarFile.toPath(), REPLACE_EXISTING)
+
+            // findJarsByGroup(configurations.runtime, dep.group).each { jar ->
+            //     logging.info(jar.toPath().toString())
+            //     logging.info(newJarFile.toPath().toString())
+            //     Files.copy(jar.toPath(), newJarFile.toPath(), REPLACE_EXISTING)
+            // }
             // from findJarsByGroup(configurations.runtime, dep.group)
             // into newJarFile.toPath()
         }
