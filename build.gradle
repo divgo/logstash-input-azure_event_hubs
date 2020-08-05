@@ -45,7 +45,7 @@ task vendor {
         String vendorPathPrefix = "vendor/jar-dependencies"
         configurations.runtime.allDependencies.each { dep ->
 
-            logger.info('group: {}, name: {}, version: {}, absolute_path: {}', dep.group, dep.name, dep.version)
+            logger.info('group: {}, name: {}, version: {}', dep.group, dep.name, dep.version)
 
             File f = configurations.runtime.filter { it.absolutePath }.singleFile // .contains("${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}")
             // File f = configurations.runtime.filter { it.absolutePath.contains("${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}") }.singleFile
