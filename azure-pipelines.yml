@@ -25,8 +25,7 @@ steps:
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
-    options:  --scan --stacktrace --info
-    workingDirectory: $(Build.SourcesDirectory)
+    options:  --scan --stacktrace --info --debug --gradle-user-home $(Build.SourcesDirectory)
 
 # - script: bundle exec rake
 #   displayName: 'bundle exec rake'
