@@ -26,6 +26,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
     options:  --scan --stacktrace --info
+    workingDirectory: $(Build.SourcesDirectory)
 
 # - script: bundle exec rake
 #   displayName: 'bundle exec rake'
