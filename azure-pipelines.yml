@@ -27,6 +27,12 @@ steps:
     sonarQubeRunAnalysis: false
     options:  --scan --stacktrace --info --debug --gradle-user-home $(Build.SourcesDirectory)
 
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: './logstash-input-azure_event_hubs-1.2.2.gem'
+    ArtifactName: 'drop'
+    
 # - script: bundle exec rake
 #   displayName: 'bundle exec rake'
 - script: |
