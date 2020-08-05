@@ -52,7 +52,7 @@ task vendor {
             newJarFile.mkdirs()
 
             String jarPath = "${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}"
-            logging.info(jarPath)
+            logger.info(jarPath)
 
             File f = configurations.runtime.filter { it.absolutePath.contains(jarPath) }.singleFile
             Files.copy(f.toPath(), newJarFile.toPath(), REPLACE_EXISTING)
