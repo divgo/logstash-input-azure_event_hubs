@@ -47,7 +47,7 @@ task vendor {
 
             logger.info('group: {}, name: {}, version: {}', dep.group, dep.name, dep.version)
 
-            File f = configurations.runtime.filter { it.absolutePath }.singleFile // .contains("${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}")
+            File f = configurations.runtime.filter { it.absolutePath.contains("${dep.group}" + File.separator + "${dep.name}") }.singleFile // .contains("${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}")
             // File f = configurations.runtime.filter { it.absolutePath.contains("${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}") }.singleFile
             String groupPath = dep.group.replaceAll('\\.', '/')
             File newJarFile = file("${vendorPathPrefix}" + File.separator + "${groupPath}" + File.separator + "${dep.name}"+ File.separator + "${dep.version}" + File.separator + "${dep.name}-${dep.version}.jar")
