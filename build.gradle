@@ -51,7 +51,7 @@ task vendor {
             File newJarFile = file("${vendorPathPrefix}" + File.separator + "${groupPath}" + File.separator + "${dep.name}"+ File.separator + "${dep.version}" + File.separator + "${dep.name}-${dep.version}.jar")
             newJarFile.mkdirs()
 
-            File f = configurations.runtime.filter { it.absolutePath.contains("${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}") }.singleFile
+            // File f = configurations.runtime.filter { it.absolutePath.contains("${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}") }.singleFile
             // Files.copy(f.toPath(), newJarFile.toPath(), REPLACE_EXISTING)
 
             findJarsByGroup(configurations.runtime, dep.group).each { jar ->
