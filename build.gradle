@@ -54,14 +54,19 @@ task vendor {
             // File f = configurations.runtime.filter { it.absolutePath.contains("${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}") }.singleFile
             // Files.copy(f.toPath(), newJarFile.toPath(), REPLACE_EXISTING)
 
-            into(newJarFile.toPath()) {
-                from findJar(dep.group) 
-                from findJar(dep.group)
-            }
+            from findJarsByGroup(configurations.runtime, dep.group)
+            into newJarFile.toPath()
         }
     }
 }
 
+task copyToLib(type: Copy) {
+
+}
+
+def findJarsByGroup(Configuration config, groupName) {
+  configurations.compile.files { it.group.equals(groupName) }
+}
 
 def findJar(prefix) { 
     configurations.runtime.filter { it.name.startsWith(prefix) }
