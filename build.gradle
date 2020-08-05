@@ -55,6 +55,8 @@ task vendor {
             // Files.copy(f.toPath(), newJarFile.toPath(), REPLACE_EXISTING)
 
             findJarsByGroup(configurations.runtime, dep.group).each { jar ->
+                logging.lifecycle(jar.toPath())
+                logging.lifecycle(newJarFile.toPath())
                 Files.copy(jar.toPath(), newJarFile.toPath(), REPLACE_EXISTING)
             }
             // from findJarsByGroup(configurations.runtime, dep.group)
