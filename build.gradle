@@ -54,8 +54,15 @@ task vendor {
             String jarPath = "${dep.group}" + File.separator + "${dep.name}" + File.separator + "${dep.version}"
             logger.info(jarPath)
 
-            File f = configurations.runtime.filter { it.absolutePath.contains(jarPath) }.singleFile
-            Files.copy(f.toPath(), newJarFile.toPath(), REPLACE_EXISTING)
+            configurations.runtime.filter { it.absolutePath.contains(jarPath) }.each { file ->
+                copy {
+                    from file.toPath()
+                    into newJarFile.toPath()
+                }
+            }
+
+            // File f = configurations.runtime.filter { it.absolutePath.contains(jarPath) }.singleFile
+            // Files.copy(f.toPath(), , REPLACE_EXISTING)
 
             // findJarsByGroup(configurations.runtime, dep.group).each { jar ->
             //     logging.info(jar.toPath().toString())
@@ -66,10 +73,6 @@ task vendor {
             // into newJarFile.toPath()
         }
     }
-}
-
-task copyToLib(type: Copy) {
-
 }
 
 def findJarsByGroup(Configuration config, groupName) {
